@@ -10,6 +10,11 @@ private:
 
 public:
 
+	const bool operator==(const Object& RightObject)
+	{
+		return Value == RightObject.Value;
+	}
+
 	int Value{ 3 };
 	Object()
 	{
@@ -57,14 +62,21 @@ public:
 				ObjectList[i].Multiplicate(20);		//testing
 				return ObjectList[i];
 			}
-		std::cout << "\nNo free objects for you sorry\n";
-		Object n;
-		return n;
+		++PoolMaxSize;
+		ObjectList.push_back(Object());
+		return 
 	}
 
 	void ReleaseObject(Object ObjToRelease)
 	{
-
+		for (size_t i = 0; i < PoolMaxSize; i++)
+		{
+			if (ObjectList[i] == ObjToRelease)
+			{
+				ObjectList[i].SetInUse(false);
+				return;
+			}
+		}
 	}
 
 	void FillList()
