@@ -26,7 +26,7 @@ public:
 		: printer(set_printer) {}
 	virtual void PrintOperation() const override
 	{
-		this->printer->PrintOperation();
+		printer->PrintOperation();
 	}
 };
 

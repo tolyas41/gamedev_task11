@@ -1,5 +1,6 @@
 #include "ObjectPool.h"
 #include "Decorator.h"
+#include "ChainOfResponsibility.h"
 #include <iostream>
 
 
@@ -55,7 +56,14 @@ int main()
 
 	//3. Chain Of Responsibility
 	{
+		LowPriority* low = new LowPriority;
+		NormalPriority* normal = new NormalPriority;
+		HighPriority* high = new HighPriority;
+		low->SetNext(normal)->SetNext(high);
 
+		std::cout << low->Handle("High");
+		std::cout << low->Handle("Normal");
+		std::cout << low->Handle("Low");
 	}
 	return 0;
 }
