@@ -27,6 +27,7 @@ public:
 	}
 	void Reset()
 	{
+		SetInUse(false);
 		Value = 0;
 	}
 	bool IsInUse()
@@ -88,12 +89,6 @@ public:
 	{
 		ObjectList.push_back(ObjToRelease);
 		ObjToRelease->Reset();
-	}
-
-	void testprint()
-	{
-		for (auto a : ObjectList)
-		std::cout << a->GetValue() << std::endl;
 	}
 };
 
